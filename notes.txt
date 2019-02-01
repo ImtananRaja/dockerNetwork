@@ -1,0 +1,18 @@
+
+# Docker build 
+docker build -t mysql-test ./
+
+
+# Run container
+# publish port 3306 from container and map it to 6603 so it 
+# becomes public facing
+docker run --detach -p 6603:3306 --name=test-mysql mysql-test
+#
+
+#To connect to the mysql container bash
+docker exec -it test-mysql bash
+
+docker exec -i test-mysql mysql -uroot -psecret api_database < fulldb01-02-2019.sql
+
+
+
